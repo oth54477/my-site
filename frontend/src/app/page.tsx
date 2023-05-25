@@ -64,7 +64,7 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-        <h1>방명록을 남겨주세요</h1>
+        <h1>😁방명록을 남겨주세요😁</h1>
         <input
           type="text"
           ref={input}
