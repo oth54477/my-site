@@ -6,6 +6,7 @@ import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 export default function Home() {
+  const URL = "https://taehun.site/data";
   interface apiDataType {
     id: number;
     name: string;
@@ -16,9 +17,7 @@ export default function Home() {
   const [apiData, setApiData] = useState<apiDataType[]>([]);
 
   const getData = () => {
-    axios
-      .get("http://localhost:8080/visited")
-      .then((Response) => setApiData(Response.data));
+    axios.get(URL).then((Response) => setApiData(Response.data));
   };
 
   const input = useRef<any>(null);
@@ -33,7 +32,7 @@ export default function Home() {
 
   const submitData = async () => {
     await axios
-      .post("http://localhost:8080/visited", {
+      .post(URL, {
         name: inputData,
         created_time: String(new Date()),
       })
@@ -45,7 +44,7 @@ export default function Home() {
   };
 
   const deleteData = (data: apiDataType) => {
-    axios.delete(`http://localhost:8080/visited/${data.id}`).then(() => {
+    axios.delete(`${URL}/${data.id}`).then(() => {
       getData();
     });
   };
